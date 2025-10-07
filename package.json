@@ -1,0 +1,21 @@
+{
+  "name": "renso-s_play",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "canvas-confetti": "^1.9.3",
+    "interactjs": "^1.10.27"
+  },
+  "devDependencies": {
+    "vite": "^7.1.9"
+  }
+}

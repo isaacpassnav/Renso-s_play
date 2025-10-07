@@ -1,0 +1,244 @@
+body {
+  background: linear-gradient(135deg, #ffe4ec 0%, #fff0f6 50%, #fce4ec 100%);
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+}
+
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 70px);
+  grid-template-rows: repeat(var(--rows), 70px);
+  gap: 3px;
+  margin: auto;
+}
+
+.puzzle-piece {
+  width: 70px;
+  height: 70px;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.puzzle-piece:active {
+  cursor: grabbing;
+}
+
+.puzzle-piece:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(255, 64, 129, 0.4);
+}
+
+/* Estilos para los mensajes de celebración */
+.celebration {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.celebration h2 {
+  font-family: "Pacifico", cursive;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: #ff4081;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.celebration h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.8rem;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+/* Animación de entrada */
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Colores personalizados */
+.text-pink {
+  color: #e73370;
+  text-shadow: 2px 2px 4px rgba(231, 51, 112, 0.2);
+}
+
+/* Footer mejorado */
+footer {
+  width: 100%;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+footer .text-warning {
+  color: #ffc107 !important;
+  font-weight: 700;
+}
+
+/* Enlaces sociales */
+.social-link {
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px) scale(1.1);
+  color: #ffc107 !important;
+}
+
+.social-link i {
+  font-size: 1.3rem;
+}
+
+/* Estilos para botones de la pantalla final */
+.final-screen {
+  padding: 3rem 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.final-screen h2 {
+  font-family: "Pacifico", cursive;
+  font-size: 2.5rem;
+  line-height: 1.6;
+  color: #ff4081;
+  margin-bottom: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-group-final {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.btn-final {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+  color: white;
+}
+
+.btn-yes:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(86, 171, 47, 0.4);
+}
+
+.btn-no {
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  color: white;
+}
+
+.btn-no:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 65, 108, 0.4);
+}
+
+/* Resultado de la respuesta */
+.result-message {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.result-message .emoji {
+  font-size: 5rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: bounceIn 0.6s ease;
+}
+
+.result-message p {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 700;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Efecto de partículas cuando gana */
+.party {
+  position: relative;
+  overflow: visible;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .celebration h2,
+  .final-screen h2 {
+    font-size: 1.8rem;
+  }
+  
+  .celebration h3 {
+    font-size: 2rem;
+  }
+  
+  .btn-final {
+    font-size: 1.1rem;
+    padding: 0.8rem 2rem;
+  }
+  
+  .result-message .emoji {
+    font-size: 4rem;
+  }
+  
+  .result-message p {
+    font-size: 1.5rem;
+  }
+}
