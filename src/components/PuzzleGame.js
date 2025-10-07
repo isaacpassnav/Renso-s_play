@@ -7,8 +7,6 @@ const CONFIG = {
   rows: 5,
   cols: 5,
   pieceSize: 70,
-  imagePath: "./src/assets/img/renso-img.jpeg",
-  audioPath: "./src/assets/audio/mp3-rio-roma.mp3", // Aquí pon tu audio
   messages: {
     celebration: "🎉 ¡Felicidades Katherine! Formaste el rompecabezas. Ahora ...",
     question: "¿Te gustaría ser mi compañera para Rosa y Clavel? 🌹 & 🌷",
@@ -17,15 +15,18 @@ const CONFIG = {
   }
 };
 
-// Audio de celebración
+// Audio de celebración usando import.meta.url
 const celebrationSound = new Howl({
-  src: [CONFIG.audioPath],
+  src: [new URL("../assets/audio/mp3-rio-roma.mp3", import.meta.url).href],
   volume: 0.6,
   loop: false,
   onloaderror: function() {
     console.warn("No se pudo cargar el audio de celebración");
   }
 });
+
+// Ruta de la imagen usando import.meta.url
+const imagePath = new URL("../assets/img/renso-img.jpeg", import.meta.url).href;
 
 export function initPuzzle() {
   const container = document.getElementById("puzzle-container");
@@ -39,6 +40,9 @@ export function initPuzzle() {
 }
 
 function setupContainer(container, rows, cols) {
+  // Remover clases de Bootstrap que interfieren con el grid
+  container.classList.remove("d-flex", "justify-content-center", "align-items-center");
+  
   container.classList.add("puzzle-grid");
   container.style.setProperty("--rows", rows);
   container.style.setProperty("--cols", cols);
@@ -70,7 +74,7 @@ function createPuzzlePiece(index, rows, cols) {
   piece.setAttribute("data-index", index);
   piece.setAttribute("data-current-position", index);
   
-  piece.style.backgroundImage = `url('${CONFIG.imagePath}')`;
+  piece.style.backgroundImage = `url('${imagePath}')`;
   piece.style.backgroundSize = `${cols * CONFIG.pieceSize}px ${rows * CONFIG.pieceSize}px`;
   
   const col = index % cols;
@@ -172,11 +176,22 @@ function celebrate(container) {
   // Reproducir música de celebración
   celebrationSound.play();
   
-  showMessage(container, CONFIG.messages.celebration);
+  // Ocultar el contenedor del puzzle
+  container.style.display = "none";
+  
+  // Crear nuevo contenedor para la celebración
+  const appContainer = document.getElementById("app");
+  const celebrationContainer = document.createElement("div");
+  celebrationContainer.id = "celebration-container";
+  celebrationContainer.className = "celebration-wrapper";
+  
+  appContainer.appendChild(celebrationContainer);
+  
+  showMessage(celebrationContainer, CONFIG.messages.celebration);
   launchConfetti(200);
 
   setTimeout(() => {
-    showFinalQuestion(container);
+    showFinalQuestion(celebrationContainer);
     launchConfetti(300);
   }, 4000);
 }
@@ -201,19 +216,19 @@ function showFinalQuestion(container) {
     </div>
   `;
 
-  document.getElementById("yesBtn").addEventListener("click", handleYesResponse);
-  document.getElementById("noBtn").addEventListener("click", handleNoResponse);
+  document.getElementById("yesBtn").addEventListener("click", () => handleYesResponse(container));
+  document.getElementById("noBtn").addEventListener("click", () => handleNoResponse(container));
 }
 
-function handleYesResponse() {
-  const resultDiv = document.getElementById("result");
-  const finalScreen = document.querySelector(".final-screen");
+function handleYesResponse(container) {
+  const finalScreen = container.querySelector(".final-screen");
   
   // Eliminar pregunta y botones
   finalScreen.querySelector("h2").remove();
   finalScreen.querySelector(".btn-group-final").remove();
   
   // Mostrar resultado positivo
+  const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = `
     <div class="result-message fade-in party">
       <span class="emoji">🥳</span>
@@ -226,15 +241,15 @@ function handleYesResponse() {
   setTimeout(() => launchConfetti(300, 100), 500);
 }
 
-function handleNoResponse() {
-  const resultDiv = document.getElementById("result");
-  const finalScreen = document.querySelector(".final-screen");
+function handleNoResponse(container) {
+  const finalScreen = container.querySelector(".final-screen");
   
   // Eliminar pregunta y botones
   finalScreen.querySelector("h2").remove();
   finalScreen.querySelector(".btn-group-final").remove();
   
   // Mostrar resultado negativo
+  const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = `
     <div class="result-message fade-in">
       <span class="emoji">😢</span>
