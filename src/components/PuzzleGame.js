@@ -7,8 +7,8 @@ const CONFIG = {
   rows: 5,
   cols: 5,
   pieceSize: 70,
-  imagePath: "../src/assets/img/renso-img.jpeg",
-  audioPath: "../src/assets/audio/mp3-rio-roma.mp3", // Aquí pon tu audio
+  imagePath: "./src/assets/img/renso-img.jpeg",
+  audioPath: "./src/assets/audio/mp3-rio-roma.mp3", // Aquí pon tu audio
   messages: {
     celebration: "🎉 ¡Felicidades Katherine! Formaste el rompecabezas. Ahora ...",
     question: "¿Te gustaría ser mi compañera para Rosa y Clavel? 🌹 & 🌷",
