@@ -9,7 +9,7 @@ const CONFIG = {
   pieceSize: 70,
   messages: {
     celebration: "🎉 ¡Felicidades Katherine! Formaste el rompecabezas. Ahora ...",
-    question: "¿Te gustaría ser mi compañera para Rosa y Clavel? 🌹 & 🌷",
+    question: "¿Te gustaría formaría formar una bonita pareja de baile para la Rosa y Clavel conmigo? 🌹 & 🌷",
     yesResponse: "¡Será una noche inolvidable! 💃🕺",
     noResponse: "Oh no... qué tristeza 😢"
   }
